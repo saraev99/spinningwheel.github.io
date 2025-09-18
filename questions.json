@@ -1,0 +1,32 @@
+[
+  {
+    "question": "¿Qué producto de Danone tiene origen islandés?",
+    "answers": ["SKYR", "Griego straciatella"]
+  },
+  {
+    "question": "Cuántos gramos de proteina suele tener 1 yogur?",
+    "answers": ["4", "10"]
+  }
+]
+
+<script>
+  async function loadQuestions() {
+    const response = await fetch("questions.json");
+    const data = await response.json();
+
+    // Example: map answers to the wheel
+    const wheelItems = data[0].answers; // first question's answers
+    initWheel(wheelItems);
+  }
+
+  function initWheel(items) {
+    // This depends on your wheel’s library
+    // Usually something like:
+    const wheel = new WheelOfFortune({
+      items: items
+    });
+    wheel.start();
+  }
+
+  loadQuestions();
+</script>
